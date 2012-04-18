@@ -102,38 +102,8 @@ fprintf(1,'Started on %s\n\n', datestr(now));
         ~exist(['./flandmark_data/libocas/mex/flandmark_detector.' mexext], 'file'))
         error('Mex-files not found! Please compile the flandmark with BUILD_MATLAB_BINDINGS turned on.\n');
     end
-        
-%     if (~exist(['./flandmark_data/libocas/mex/lbp2sparse.' mexext], 'file'))
-%         mex -largeArrayDims ./flandmark_data/libocas/flandmark_mexsrc/lbp2sparse_mex.cpp ./flandmark_data/libocas/flandmark_mexsrc/liblbp.cpp -output ./flandmark_data/libocas/mex/lbp2sparse
-%     end;
-%     if (~exist(['./flandmark_data/libocas/mex/argmax_mex.' mexext], 'file'))
-%         mex -largeArrayDims ./flandmark_data/libocas/flandmark_mexsrc/argmax_mex.cpp  -output ./flandmark_data/libocas/mex/argmax_mex
-%     end;
-%     if (~exist(['./flandmark_data/libocas/mex/flandmark_load_model.' mexext], 'file'))
-%         mex -largeArrayDims ./flandmark_data/libocas/flandmark_mexsrc/flandmark_load_model_mex.cpp ./flandmark_data/libocas/flandmark_mexsrc/flandmark_detector.cpp ./flandmark_data/libocas/flandmark_mexsrc/liblbp.cpp -output ./flandmark_data/libocas/mex/flandmark_load_model
-%     end;
-%     if (~exist(['./flandmark_data/libocas/mex/flandmark_detector.' mexext], 'file'))
-%         mex -largeArrayDims ./flandmark_data/libocas/flandmark_mexsrc/flandmark_detector_mex.cpp ./flandmark_data/libocas/flandmark_mexsrc/flandmark_detector.cpp ./flandmark_data/libocas/flandmark_mexsrc/liblbp.cpp -output ./flandmark_data/libocas/mex/flandmark_detector
-%     end;
-%     if (~exist(['./flandmark_data/libocas/mex/getNormalizedFrame.' mexext], 'file'))
-%         mex -largeArrayDims ./flandmark_data/libocas/flandmark_mexsrc/getNormalizedFrame_mex.cpp ./flandmark_data/libocas/flandmark_mexsrc/flandmark_detector.cpp ./flandmark_data/libocas/flandmark_mexsrc/liblbp.cpp -output ./flandmark_data/libocas/mex/getNormalizedFrame
-%     end;
     
     fprintf('Done.\n');
-
-% Update 21-03-12 - not needed anymore
-% %% Prune database (get rid of uncomplete or missing images)
-% 
-%     % check if already pruned
-%     if (exist('./flandmark_data/MAT/db_good.mat', 'file'))
-%         fprintf('Pruned database found. Skipping...\n');
-%     else
-%         fprintf('Pruning database...\n');
-%         
-%         tic
-%         run './flandmark_data/pruneDB.m';
-%         toc
-%     end;
     
 %% Collect statistics about components positions
 
@@ -207,31 +177,11 @@ fprintf(1,'Started on %s\n\n', datestr(now));
     if (~exist('./flandmark_data/MAT/kappas.mat', 'file'))
 	run('./flandmark_data/computeKappas.m');
     end;
-
-%     % start matlabpool
-%     try
-%         matlabpool;
-%     catch ME1
-%         idSegLast = regexp(ME1.identifier, '(?<=:)\w+$', 'match');
-%         if (strcmp(idSegLast, 'OpenConnection'))
-%             fprintf('Already connected to matlab pool. Skipping...\n');
-%         end;
-%     end
-
+    
     fprintf('Calling BMRM solver...\n');
     run './flandmark_data/test_bmrm.m';
     
 %% Validation
-
-%     % start matlabpool
-%     try
-%         matlabpool;
-%     catch ME1
-%         idSegLast = regexp(ME1.identifier, '(?<=:)\w+$', 'match');
-%         if (strcmp(idSegLast, 'OpenConnection'))
-%             fprintf('Already connected to matlab pool. Skipping...\n');
-%         end;
-%     end
 
     if (exist('./flandmark_data/results/W.mat', 'file'))
         fprintf('Best vector W already found. Skipping...\n');
@@ -242,16 +192,6 @@ fprintf(1,'Started on %s\n\n', datestr(now));
     end;
     
 %% Test
-
-%     % start matlabpool
-%     try
-%         matlabpool;
-%     catch ME1
-%         idSegLast = regexp(ME1.identifier, '(?<=:)\w+$', 'match');
-%         if (strcmp(idSegLast, 'OpenConnection'))
-%             fprintf('Already connected to matlab pool. Skipping...\n');
-%         end;
-%     end
 
     if (exist('./flandmark_data/results/errors.mat', 'file'))
         fprintf('Test already passed. Skipping...\n');
