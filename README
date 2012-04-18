@@ -1,0 +1,10 @@
+Explanation of directory content
+================================
+
+README			- this file
+CMakeLists.txt	- to create release archives
+cpp				- flandmark source code
+learning		- MATLAB learning scripts for flandmark learning
+data			- important data files for running examples
+
+Visit http://cmp.felk.cvut.cz/~uricamic/flandmark for further information
