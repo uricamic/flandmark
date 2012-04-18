@@ -1,0 +1,1 @@
+For learning the parameters of facial landmark detector run script flandmark_learn.m 

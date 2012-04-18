@@ -1,0 +1,22 @@
+# This script runs the qpslx solver on two test problems and compares
+# the results with reference solutions stored in files.
+#
+
+echo "-- Solving QP task 1 ----------------------"
+
+./qpsplx ../data/splx_qp_random100x10.txt ../data/splx_qp_random100x10_sol.txt
+
+echo "-- Comparing results to reference solution ----"
+echo " "
+
+./qpsplx_compsol ../data/splx_qp_random100x10_sol.txt ../data/splx_qp_random100x10_refsol.txt
+
+echo ""
+echo "-- Solving QP task 2 ----------------------"
+
+./qpsplx ../data/splx_qp_random300x30.txt ../data/splx_qp_random300x30_sol.txt
+
+echo "-- Comparing results to reference solution ----"
+echo " "
+
+./qpsplx_compsol ../data/splx_qp_random300x30_sol.txt ../data/splx_qp_random300x30_refsol.txt

@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head> <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2"> 
+<head>
+<title>LIBOCAS - Library implementing OCAS solver</title>
+</head>
+
+<BODY leftmargin="0" topmargin="0" marginwidth="25" marginheight="0">
+
+<div align="center">
+<H2>LIBOCAS - Library implementing OCAS solver <br>for training linear SVM
+classifiers from large-scale data</H2>
+<A href="http://cmp.felk.cvut.cz/~xfrancv/">Vojtech Franc</a>, 
+<A href="http://ida.first.fraunhofer.de/homepages/sonne/first/">Soeren
+Sonnenburg</a>
+<p>
+Last Modified: 11-Jun-2010
+
+</div>
+
+<hr>
+
+<h4>Introduction</h4>
+
+<p>
+The library implements Optimized Cutting Plane Algorithm (OCAS)
+for training linear SVM classifiers from large-scale data. 
+The computational effort of OCAS scales with O(m log m) where m is the sample size.
+In an extensive empirical evaluation OCAS significantly outperforms current
+state of the art SVM solvers, like SVM^light, SVM^perf and BMRM, achieving
+speedups of over 1,000 on some datasets over SVM^light and 20 over SVM^perf,
+while obtaining the same precise Support Vector solution. OCAS even in the early
+optimization steps shows often faster convergence than the so far in this domain
+prevailing approximative methods SGD and Pegasos. Effectively parallelizing 
+OCAS we were able to train on a dataset of size 15 million examples
+(itself about 32GB in size) in just 671 seconds --- a competing string kernel SVM
+required 97,484 seconds to train on 10 million examples sub-sampled from this
+dataset.
+
+<p>
+<img align="top" border="0" src="new.gif">The library also implements COFFIN framework for
+efficient training of translation invariant image classifiers from virtual
+examples. As an example, we used the implemented framework to train a linear SVM
+on a gender classification dataset of almost 5 million images on a plain
+notebook with just 4GB of memory.
+
+
+<h4>Features</h4>
+
+<ul>
+   <li>SVM solvers for training linear classifiers from large scale-data.</li>
+   <li>Binary (two-class) and genuine multi-class SVM formulations.</li>
+   <li>Optimized code written in C.</li>
+   <li>A stand alone application and MEX interface for Matlab.</li>
+   <li>Reads examples from SVM^light format.</li>
+   <li>Optimized for both sparse and dense features.</li>  
+   <li>Parallelized version of the binary solver.</li>
+   <li>Allows using different C for each training example (Matlab's interace to binary solver).</li>
+   <li>Tools for classification.</li>
+   <li><img align="top" border="0" src="new.gif"> Training translation invariant image classifiers from virtual examples.</li>
+   <li><img align="top" border="0" src="new.gif"> Functions for computing image features based on Local Binary Patterns (LBP).</li>
+
+</ul>
+
+<h4>Problem formulation</h4>
+
+OCAS solver is currently implemented for training binary (two-class) and multi-class
+SVM classifiers:
+
+<p><b>1. Binary classification problem:</b> OCAS solves the following unconstrained convex optimization task
+<div align="center">
+  <img align="top" vspace="2" src="linear_svm_sc.png">
+</div>
+where <img align="top" src="C_sc.png"> is the regularization constant and
+<img align="top" border="0" src="trn_set_sc.png"> are training examples. The result is 
+the parameter vector <img align="top" border="0" src="w_sc.png"> of the linear rule
+<img align="top" border="0" src="lin_rule_sc.png">
+which assigns vector <img align="top" border="0" src="x_sc.png"> a class label +1 and/or -1. 
+
+<p><b>2. Multi-class classification probem:</b> OCAS solves the following unconstrained convex optimization task
+<div align="center">
+  <img align="top" vspace="2" src="multi_linear_svm_sc.png">
+</div>
+where <img align="top" src="C_sc.png"> is the regularization constant, 
+<img align="top" border="0" src="set_y_sc.png"> is a finite set of labels and
+<img align="top" border="0" src="multi_trn_set_sc.png"> are training
+examples. The result is a set of parameter vectors <img align="top"
+border="0" src="multi_w_sc.png"> of the linear rule
+<img align="top" border="0" src="multi_lin_rule_sc.png">
+which assigns vector <img align="top" border="0" src="x_sc.png"> a class label
+from <img align="top" border="0" src="set_y_sc.png">. 
+
+<h4>Download</h4>
+
+LIBOCAS can be downloaded from here: 
+<ul>
+  <li><img align="top" border="0" src="new.gif"> Version 0.93, 2010-06-11, <a
+  href="http://cmp.felk.cvut.cz/~xfrancv/ocas/libocas_v093.zip">libocas_v093.zip</a> </li>
+  <li>Version 0.92, 2008-08-03, <a
+  href="http://cmp.felk.cvut.cz/~xfrancv/ocas/libocas_v092.zip">libocas_v092.zip</a> </li>
+  <li>Version 0.91, 2008-07-14, <a
+  href="http://cmp.felk.cvut.cz/~xfrancv/ocas/libocas_v091.zip">libocas_v091.zip</a> </li>
+  <li>Version 0.90, 2008-10-12, <a
+  href="http://cmp.felk.cvut.cz/~xfrancv/ocas/libocas_v09.zip">libocas_v09.zip</a> </li>
+</ul>
+
+<h4><a href="ChangeLog">Change Log</a></h4>
+
+<h4>Platforms</h4>
+
+GNU/Linux. 
+
+<h4>Licensing Information</h4>
+
+LIBOCAS is licensed under the GPL version 3.
+
+<h4>References</h4>
+
+<ul>
+<li>S. Sonnenburg, V. Franc.  <b>COFFIN: A Computational Framework for Linear SVMs.</b>  
+  <i> In Proceedings of ICML.</i>  Haifa, 2010.
+ [<a href="http://cmp.felk.cvut.cz/~xfrancv/papers/Sonnenburg-COFFIN-ICML10.pdf">pdf</a>]</li>
+
+<li>V. Franc, S. Sonnenburg. <b>Optimized Cutting Plane Algorithm for Large-Scale
+  Risk Minimization. </b> <i>The Journal of Machine Learning Research (JMLR)</i>,
+  vol. 10, pp. 2157--2192. October 2009. [<a href="http://jmlr.csail.mit.edu/papers/volume10/franc09a/franc09a.pdf">pdf</a>]</li>
+
+<li>V. Franc, S. Sonnenburg. <b>OCAS optimized cutting plane algorithm for Support Vector 
+ Machines</b>. <i>In Proceedings of ICML</i>. Helsinki, 2008. 
+[<a href="http://cmp.felk.cvut.cz/~xfrancv/papers/Franc-OCAS-ICML08.pdf">pdf</a>]</li>
+
+</ul>
+
+</BODY>
+</HTML>

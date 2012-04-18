@@ -1,0 +1,42 @@
+\documentclass[11pt]{article}
+
+\usepackage{times,latexsym,amsmath,amssymb,amsfonts,bbm,pifont}
+
+\input{makros}
+
+\begin{document}
+
+\pagestyle{empty}
+
+\[
+   \{\#w_y^* \mid y\in \SY\} = \argmin_{\{\#w_y\in\Re^n \mid y\in \SY\}} \Bigg [
+   \frac{1}{2} \sum_{y\in \SY} \|\#w_y\|^2 + C \sum_{i=1}^m
+   \max_{y\in \SY} \Big (\leftbb y \neq y_i\rightbb + \lz
+   \#w_{y}-\#w_{y_i}, \#x_i\pz \Big ) \Bigg ]
+\]
+
+\[
+  \{(\#x_1,y_1),\ldots,(\#x_m,y_m)\}\in (\Re^n\times \SY)^m
+\]
+
+\[
+  \SY=\{1,\ldots,Y\}
+\]
+
+\[
+  \{\#w_y^* \mid y\in \SY\}
+\]
+
+\[
+  f(\#x) = \sgn\left( \lz \#w^*,\#x\pz \right )
+\]
+
+\[
+ \lz \#w^*,\#x\pz
+\]
+
+$f(\#x) = \argmax_{y\in\SY} \lz \#w^*_y,\#x\pz$
+
+
+
+\end{document}

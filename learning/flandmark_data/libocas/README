@@ -1,0 +1,74 @@
+LIBOCAS - Library implementing Optimized Cutting Plane Algorithm (OCAS) 
+solver for training linear SVM classifiers
+
+FEATURES
+ - SVM solvers for training linear classifiers from large scale-data.
+ - Binary (two-class) and genuine multi-class SVM formulations.
+ - Optimized code written in C.
+ - A stand alone application and MEX interface for Matlab.
+ - Reads examples from SVM^light format.
+ - Optimized for both sparse and dense features.
+ - Parallelized version of the binary solver.
+ - Allows using different C for each training example (Matlab's interace to binary solver).
+ - Tools for classification.
+ - Training translation invariant image classifiers from virtual examples.
+ - Functions for computing image features based on Local Binary Patterns (LBP).
+
+
+PROBLEM FORMULATION 
+
+OCAS solver is currently implemented for training binary (two-class) and multi-class
+SVM classifiers:
+
+1. Binary case: OCAS solves the following unconstrained convex optimization task
+    
+   W^*,W0^* = argmin 0.5*(W'*W+W0^2) + C*sum max( 0, 1-y(i)*(W'*X(:,i)+W0*X0) )
+                W,W0                  i=1:nData
+
+where C is the regularization constant, X [nDim x nData] are training feature
+vectors and y [nData x 1] are their binary labels (+1/-1). The result are 
+parameters W^* [nDim x 1], W0^* [1 x 1] of the linear rule
+
+      f(X) = sign( X'*W + W0 )
+
+2. Multi-class case: OCAS solves the following unconstrained convex optimization task
+
+   W^*  =  argmin  0.5*sum_y (W(:,y)'*W(:,y)) + C*  sum     max( (y~=y(i)) + (W(:,y) - W(:,y(i)))'*X(:,i)) 
+             W                                    i=1:nData  y 
+
+where C is the regularization constant, X [nDim x nData] are training feature
+vectors and y [nData x 1] are their labels from 1 to Y. The result are 
+parameters W^* [nDim x Y] of the linear rule
+
+      f(X) = argmax X'*W(:,y)
+               y
+
+AVAILABILITY
+
+LIBOCAS can be downloaded from 
+    http://cmp.felk.cvut.cz/~xfrancv/ocas/html/index.html
+
+PLATFORMS
+
+GNU/Linux. 
+
+
+LICENSE
+
+LIBOCAS is licensed under the GPL version 3 (cf. LICENSE).
+
+
+REFERENCES
+
+V. Franc, S. Sonnenburg. Optimized Cutting Plane Algorithm for Large-Scale Risk Minimization. 
+  The Journal of Machine Learning Research (JMLR), vol. 10, pp. 2157--2192. October 2009. 
+  http://jmlr.csail.mit.edu/papers/volume10/franc09a/franc09a.pdf
+
+V. Franc, S. Sonnenburg. OCAS optimized cutting plane algorithm for Support Vector 
+  Machines. In Proceedings of ICML. Omnipress, 2008.
+  http://cmp.felk.cvut.cz/~xfrancv/papers/Franc-OCAS-ICML08.pdf
+
+S. Sonnenburg, V. Franc.  COFFIN: A Computational Framework for Linear SVMs.  
+  In Proceedings of the 27nd International Machine Learning Conference (ICML'10). 
+  Haifa 2010.
+  http://cmp.felk.cvut.cz/~xfrancv/papers/Sonnenburg-COFFIN-ICML10.pdf

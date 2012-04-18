@@ -1,0 +1,55 @@
+LIBQP - Library for Quadratic Programming
+
+
+INTRODUCTION
+
+LIBQP implements methods for solving two special instances of QP tasks:
+
+1. QP task with simplex constraints (subset of variables lie in a simplex). 
+See function ./lib/libqp_splx.c for definition of the QP task. 
+The solver is a generalization of the method proposed [1] and [2]. 
+Solving this QP task is required for example in machine learning methods like 
+structured SVM learning, Bundle Methods for Risk Minimization, binary SVM 
+with L2-soft margin, etc. 
+
+2. QP task with box constraints and a single linear equality constraint. 
+See function ./lib/libqp_gsmo.c for definition of the QP task. 
+This task is solvable by the Generalized Sequential Minimal Optimizer [3].
+The solver is exact implementation of the algorithm from [3].
+Solving this QP task is required for example when training binary SVM with 
+L1-soft margin. 
+
+
+AVAILABILITY
+
+LIBQP can be downloaded from 
+    http://cmp.felk.cvut.cz/~xfrancv/libqp/html/
+
+INTERFACES
+
+LIBQP is implemented in C language and interfaces to Matlab.
+
+
+PLATFORMS
+
+GNU/Linux. It should run also under Windows though not tested.
+
+
+LICENSE
+
+LIBQP is licensed under the GPL version 3 (cf. LICENSE).
+
+
+REFERENCES
+
+[1] V. Franc, V. Hlavac. A Novel Algorithm for Learning Support Vector Machines
+with Structured Output Spaces. Research Report K333 22/06, CTU-CMP-2006-04. 
+May, 2006. ftp://cmp.felk.cvut.cz/pub/cmp/articles/franc/Franc-TR-2006-04.ps
+
+[2] R.-E. Fan, P.-H. Chen, C.-J. Lin. Working Set Selection Using Second Order 
+Information for Training SVM. JMLR. vol 6. 2005.
+
+[3] S.-S. Keerthi, E.G.Gilbert. Convergence of a Generalized SMO Algorithm for SVM 
+Classifier Design. Technical Report CD-00-01, Control Division, Dept. of Mechanical 
+and Production Engineering, National University of Singapore, 2000. 
+http://citeseer.ist.psu.edu/keerthi00convergence.html   

@@ -1,0 +1,144 @@
+%---------------------------------------------------------------------------
+% Title: TeX makros
+% Modifications:
+% 16-Mar-2005, VF
+% 16-May-2003, VF
+%---------------------------------------------------------------------------
+
+%\newtheorem{corrolary}[theorem]{Corrolary}
+%\newtheorem{theorem}{theorem}[section]
+
+\newcommand{\head}[1]{\par\medskip\noindent{\bf #1: }}
+\newcommand{\rem}[1]{{\it \color{red} #1}}
+
+
+\def\proof{\noindent\mbox{\sc proof: }}
+\def\eproof{\rm\hspace*{\fill}$\rule{7pt}{7pt}$\vspace{10pt}}
+
+%-- MMMakro ------------------                                                  
+\def\##1{\relax\ifmmode\mathchoice      % italic bold vector, e.g. $\#{x}$
+{\mbox{\boldmath$\displaystyle#1$}}
+{\mbox{\boldmath$\textstyle#1$}}
+{\mbox{\boldmath$\scriptstyle#1$}}
+{\mbox{\boldmath$\scriptscriptstyle#1$}}\else
+\hbox{\boldmath$\textstyle#1$}\fi}
+\def\m#1{\mathbf{#1}}                  % bold matrix, e.g. $\m{A}$
+%---------------------------------------
+
+\def\dQ{\mathrm{d}Q}
+\def\bar#1{\overline{#1}}
+
+\def\Emph#1{\emph{#1}}
+\def\Const#1{\mathrm{#1}}
+
+\def\boxit#1{\vbox{\hrule\hbox{\vrule\vbox{\medskip\noindent#1                  
+             \medskip}\vrule}\hrule}}                                           
+
+\newcommand{\enVert}[1]{\left\lVert#1\right\rVert}
+\let\norm=\enVert
+
+\renewcommand{\Re}{\mathbb{R}}
+\newcommand{\Ne}{\mathbb{N}}
+\newcommand{\Na}{\mathbb{N}}
+\newcommand{\FF}{\cal F}
+\newcommand{\FX}{\cal X}
+\newcommand{\FR}{\Re^n}
+%\newcommand{\FS}{{S}}
+%\newcommand{\dim}{\mathop dim}
+
+\newcommand{\transpose}{{\text{T}}}
+\newcommand{\w}{{\boldsymbol{w}}}
+\newcommand{\xib}{{\boldsymbol{\xi}}}
+\newcommand{\x}{{\boldsymbol{x}}}
+\newcommand{\SG}{{\cal G}}
+\newcommand{\SA}{{\cal A}}
+\newcommand{\SB}{{\cal B}}
+\newcommand{\SE}{{\cal E}}
+\newcommand{\SF}{{\cal F}}
+\newcommand{\SX}{{\cal X}}
+\newcommand{\SCX}{\overline{\cal X}}
+\newcommand{\SFX}{\tilde{\cal X}}
+\newcommand{\SIsv}{{{\cal I}_{\emptyset}}}
+\newcommand{\SY}{{\cal Y}}
+\newcommand{\SZ}{{\cal Z}}
+\newcommand{\ST}{{\cal T}}
+\newcommand{\SH}{{\cal H}}
+\newcommand{\SM}{{\cal M}}
+\newcommand{\SC}{{\cal C}}
+\newcommand{\SN}{{\cal N}}
+\newcommand{\SW}{{\cal W}}
+\newcommand{\Ssv}{{\cal S}}
+\newcommand{\Ss}{{\cal S}}
+\newcommand{\SQ}{{\cal Q}}
+\newcommand{\SR}{\Re^n}
+\newcommand{\SI}{{\cal I}}
+\newcommand{\SO}{{\cal O}}
+\newcommand{\SJ}{{\cal J}}
+\newcommand{\SL}{{\cal L}}
+\newcommand{\SD}{{\cal D}}
+\newcommand{\SV}{{\cal V}}
+\newcommand{\STheta}{\Theta}
+\newcommand{\SSV}{{\cal I_{SV}}}
+
+\newcommand{\eye}{\m{E}}
+\newcommand{\one}{{\cal \m{1}}}
+\newcommand{\nconst}{r}
+
+\def\M3N{M$^3$N}
+
+
+\def\kmse{\mathbb{\varepsilon}_{KMS}} 
+\def\mse{\mathbb{\varepsilon}_{MS}} 
+\def\qe{\mathbb{\varepsilon}_{QE}}
+\def\rerr{\mathbb{\varepsilon}_{R}}
+\def\tsterr{ \mathop{\rm TstErr}}
+\def\nsv{ nsv }
+\def\maxerr{\mathop{\rm \varepsilon_{max}}}
+%\def\keval{\mathop{\rm KerEval}}
+\def\keval{\mathop{\rm ker\_eval}}
+\def\cputime{\mathop{ \rm CPU_{time}}}
+\def\ls{\mathop{\rm \varepsilon_{LS}}}
+\def\Err{ \mathop{\rm Err}}
+\def\snr{\mathop{\rm SNR}}
+\def\dontknow{\mathop{\rm dont\_know}}
+
+\def\beq{\begin{equation}}
+\def\eeq{\end{equation}}
+\def\equ#1{(\ref{#1})}
+
+\def\veps{\varepsilon}
+\def\Veps{\Varepsilon}
+
+\def\lin{\mathop{\rm lin}}                                                
+\def\argmax{\mathop{\rm argmax}}                                                
+\def\argmin{\mathop{\rm argmin}}                                                
+\def\Span{\mathop{\rm Span}}      
+\def\Card{\mathop{\rm Card}}      
+\def\Con{\mathop{\rm co}}
+\def\diag{\mathop{\rm diag}}      
+\def\sgn{\mathop{\rm sgn}}
+
+\def\nm#1{\#\phi(#1)}
+\def\tnm#1{\tilde{\#\phi}(#1)}
+\def\tv#1{{\tilde{\##1}}}
+
+\def\lz{\langle}
+\def\pz{\rangle}
+
+\def\det#1{\mathop{\rm det} ({#1} )}
+
+\def\alphat{\#\alpha^{(t)}}
+\def\clip{\mathop{\rm clip}}
+\def\sgn{\mathop{\rm sgn}}
+
+\def\leftbb{\mathopen{\rlap{$[$}\hskip1.3pt[}}
+\def\rightbb{\mathclose{\rlap{$]$}\hskip1.3pt]}}
+\def\ass{\mathrel {:=}}
+\newcommand{\vphi}{\varphi}
+\newcommand{\boldvphi}{\#\varphi}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "makros"
+%%% TeX-master: "disertace"
+%%% End: 

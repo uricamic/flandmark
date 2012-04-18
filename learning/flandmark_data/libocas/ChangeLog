@@ -1,0 +1,36 @@
+2010-06-11  Vojtech Franc
+        * Added functions which implement the COFFIN framework for training 
+        * translation invariant image classifier from virtual example.
+        * Added functions: 
+        *    lbppyr.m, lbppyr_mex.c, liblbp.h, ocas_lbp_helper.h, svmocas_lbp.m
+        *    lbpfilter_mex.c, lbppyr_features_mex.c, liblbp.c, ocas_lbp_helper.c 
+        *    svmocas_lbp_example.m, svmocas_lbp_mex.c
+2009-08-03  Vojtech Franc
+	* BUG FIX: OCAS solver was crashing on some data (reported by Alex Binder). 
+	  The problem was a bug in "qsort_data" function which did not expect a sequnce of length 1
+	  as its input. The same bug was fixed also in "parallel_qsort_data".
+	* A new functionality added to the stand alone application "svmocas" (mex interface has it already). 
+	  Each examplean have a different regularization constant which is taken from specified text file.	  
+2009-07-31  Vojtech Franc
+	* BUG FIX: Fixed memory leak problem (missing "LIBQP_FREE( x_neq )") in libqp_splx.c (reported by Alex Binder)
+2009-02-24  Vojtech Franc
+	* Implemented version of binary SVMOCAS which supports using different C
+	* for each training example. Currently, this functionality is used in
+	* the Matlab's intefrace only. 
+2008-12-10  Vojtech Franc
+	* Added stand alone implementaion of multi-class OCAS solver (msvmocas)
+	* Added stand alone implementation of linear classifier (linclass)
+	* old benchmarking and testing scripts for Matlab removed
+	* Added new (simpler) testing script for Matlab 
+	* Data moved to ./data folder
+	* Updated HTML page, README and INSTALL files
+2008-12-02  Vojtech Franc
+	* Added multi-class version of OCAS solver including interface to Matlab (msvmocas_mex.c).
+	  It supports sparse and full matrices and loading examples directly from SVM^light file.
+	  The parallel version has not been implemented yet. 
+	* Added new implementation of linear classifier (svmlight_linclass_mex.c). 
+	* Added function which computes cls. error and AUC (compute_errors_mex.c).
+2008-11-10  Vojtech Franc
+	* Added support for represenation of SVMlight data as full matrix.
+	  The representation (spare or full) which requires less memory is used. 
+	

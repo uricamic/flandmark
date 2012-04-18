@@ -1,0 +1,46 @@
+Issue make 
+
+    make
+
+which should produce
+
+    svmocas         ... standalone application for training binary linear SVM classifiers
+    msvmocas        ... standalone application for training multi-class linear SVM classifiers
+    linclass        ... implementation of linear classification rule
+    svmocas.so      ... Linux library
+
+In addition, if mex compiler is in path then the following Matlab functions
+    
+    msvmocas.mexXXX          ... Training multi-class linear SVM classifier
+    svmocas.mexXXX           ... Training two-class linear SVM classifier
+    svmlight_linclass.mexXXX ... Linear classifier loading examples directly form SVM^light file
+    svmocas_lbp.mexXXX       ... Training two-class linear SVM classifier for grey-scale images
+    
+    lbpfilter.mexXXX         ... functions computing LBP features on grey-scale images
+    lbppyr_features.mexXXX 
+    lbppyr.mexXXX
+
+
+MATLAB
+======
+
+First, CD to the root folder of OCASLIB and then:
+
+To test LIBOCAS library type
+    libocas_test
+
+To test SVMOCAS_LBP try
+    svmocas_lbp_example
+
+To get help type 
+    help Content
+    
+
+STANDALONE APPLICATIONS
+=======================
+
+To get help type
+    ./svmocas
+    ./msvmocas
+    ./linclass
+
