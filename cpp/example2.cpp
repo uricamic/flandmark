@@ -161,7 +161,8 @@ int main( int argc, char** argv )
     {
         outfname = argv[2];
         savevideo = true;
-        writer = cvCreateAVIWriter(outfname, fourcc, vidfps, cvSize(frameW, frameH));
+        //writer = cvCreateAVIWriter(outfname, fourcc, vidfps, cvSize(frameW, frameH), 1);
+        writer = cvCreateVideoWriter(outfname, CV_FOURCC('M','J','P','G'), vidfps, cvSize(frameW, frameH), 1);
     }
     
     cvNamedWindow(flandmark_window, 0);
