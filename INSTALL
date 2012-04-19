@@ -6,24 +6,24 @@ We now support only project configuration with CMake (www.cmake.org)
 Linux:
 -------------------------------------------------------------------------------------
 
-Create dir where you want the binaries to be build (we reffer to this dir as $BIN and to the path to directory
+Create dir where you want the binaries to be build (we refer to path to this dir as $BIN and to the path to directory
 with source codes as $SRC). Source codes are in ./cpp/ directory. Change working directory to $BIN and run
 CMake as follows:
 
 	ccmake $SRC
 
-Now configure project with CMake. Turn on the BUILD_MATLAB_BINDINGS if you want the mex-files to be created.
-(for this it is important to have path to MEX and MEX_EXT specified correctly)
+Now configure project with CMake. Turn on the BUILD_MATLAB_BINDINGS if you want the mex-files to be produced
+(for this it is important to have path to MEX and MEX_EXT specified correctly).
 
-After configuring with MATLAB compile the source codes with
+After the configuration with MATLAB compile the source codes with
 
 	make
 
 This will produce 3 executable examples in the $BIN/cpp directory:
 
 	flandmark_simple_example	-	simplest example using flandmark. Given an image and bbox as command line arguments
-								it calls flandmark to detect facial landmarks.
-								Usage (in $BIN/cpp directory): ./flandmark_simple_example face.jpg 72 72 183 183
+					it calls flandmark to detect facial landmarks.
+					Usage (in $BIN/cpp directory): ./flandmark_simple_example face.jpg 72 72 183 183
 
 	flandmark_1		- 	this example requires image as parameter. Then it performs OpenCV face detection and
 					the facial landmark detection. Only the biggest face in image is detected. Optionaly
@@ -35,7 +35,7 @@ This will produce 3 executable examples in the $BIN/cpp directory:
 					OpenCV face detection together with the flandmark detector. It is also possible to save the
 					generated output both for webcamera and video sequence input.
 					Usage (in #BIN/cpp directory): ./flandmark_2 seq_bruges04_300frames.avi		// to use with video input
-												   ./flandmark_2 0 output.avi					// to use with webcam input and writing output to output.avi
+									./flandmark_2 0 output.avi	// to use with webcam input and writing output to output.avi
 
 If CMake is configured with BUILD_MATLAB_BINDINGS=ON it also produces following mex-files:
 
@@ -57,14 +57,18 @@ you can find generated project files. Compile the project with IDE chosen during
 MATLAB
 ======
 
-To test produced mex-file just run one of the following MATLAB scripts:
-
-//	./test_flandmark.m		- 	This script randomly chooses one image and performs flandmark detection
-//	./test_flandmark2.m		- 	This script randomly chooses several images and performs flandmark detection
-
-TODO!!!
-
 For learning the parameters of detector just run the following script:
 
-	./learning/flandmark_learn.m	- 	This is the main script that calls several another scripts.
+	./learning/flandmark_learn.m	- 	This is the main script that calls all necessary scripts to produce
+						flandmark_model.dat (the binary file containing the generated flandmark model, which
+						is used by the flandmark library)
+
+NOTE: for running this script it, the symbolic link ./learning/flandmark_data/LFW pointing to the directory
+containing the LFW images has to be present. Otherwise the scirpt will end with error message.
+
+You can try flandmark by running the simple example
+
+	flandmark_simple_example.m	-	simple script, that takes random image from ./data/Images (small subset
+			of LFW images along with face detections stored in separate files)
+
 
