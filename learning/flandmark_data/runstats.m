@@ -28,7 +28,6 @@ addpath('./libocas/mex');
 % load('./MAT/eyefd_on_lfw_pruned.mat');
 annotation_struct = read_lfw_annotation_file('./MAT/LFW_annotation.txt');
 
-
 %% Options configuration
 % order of components in LFW database
 options.compnames = { 'center', 'canthus-rl', 'canthus-lr', 'mouth-corner-r', 'mouth-corner-l', ...
@@ -58,6 +57,7 @@ fprintf('\nStarting test...\n');
 
 tic
 [cnt, S, bad_idx] = paramStats(annotation_struct, options);
+% [cnt, S, bad_idx] = paramStats(annotation_struct, options, 1);
 toc
 
 percent = cnt/numel(image) * 100;

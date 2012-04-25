@@ -28,29 +28,6 @@ function [ Iframe, Annotation, I, bbox_orig, bbox, OrigPoints ] = getImageFrame(
 % 12-07-11 Michal Uricar, corners dataset
 % 21-03-12 Michal Uricar, LFW annotation in one file
 
-% %     M = size(options.components, 2);'
-%     itmp = image{idx};
-%     bbox_orig = itmp.bbox;
-%     
-%     filename = [options.image_path itmp.name];
-% %     I = im2double(imread(filename));
-%     I = rgb2gray(imread(filename));
-% 
-%     fname = strtok(itmp.name, '.');
-%     xmlfilename = [options.image_path 'mgt_v2/' fname '.xml'];
-%     T = face_XML_read(xmlfilename);
-% 
-%     if (~isfield(T, 'face'))
-%         Iframe = [];
-%         Annotation = [];
-%         fprintf('Bad image found.\n');
-%         return;
-%     end;
-%     
-%     Names = fieldnames(T.face);
-%     M = length(Names) - 4;
-%     
-    
     M = 10;
     fname = strtok(annotation_struct.names{idx}, '.');
     bbox_orig = double(annotation_struct.bbox(idx, :));
@@ -60,9 +37,7 @@ function [ Iframe, Annotation, I, bbox_orig, bbox, OrigPoints ] = getImageFrame(
     % get normalized image frame
     [Iframe, bbox] = getNormalizedFrame(I, bbox_orig, options);
 
-%     % compute coordinates of landmarks in normalized frame
-% %     OrigPoints = getLandmarks(T.face, 4);
-%     OrigPoints = getLandmarks(T.face, 5);
+    % compute coordinates of landmarks in normalized frame
     OrigPoints = [annotation_struct.eye_r(idx, :)' annotation_struct.eye_l(idx, :)' ,...
         annotation_struct.canthus_rr(idx, :)' annotation_struct.canthus_rl(idx, :)' ,...
         annotation_struct.canthus_lr(idx, :)' annotation_struct.canthus_ll(idx, :)' ,...
@@ -79,15 +54,7 @@ function [ Iframe, Annotation, I, bbox_orig, bbox, OrigPoints ] = getImageFrame(
     Points = zeros(2, M);
     for j = 1 : M
         Points(:, j) = (OrigPoints(:, j) - O) .* scalefac;
-    end;       
-    
-%     for i = 1 : 4
-%         eval(['Annotation.face.' Names{i} ' = T.face.' Names{i} ';']);
-%     end;
-%     
-%     for i = 5 : numel(Names)
-%         eval(['Annotation.face.' Names{i} ' = Points(:, i - 4);']);
-%     end;
+    end;
     
     if (numel(Points(Points < 0)) > 0)
         Annotation = [];

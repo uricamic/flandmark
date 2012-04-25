@@ -13,7 +13,7 @@
 % ./flandmark_data/LFW/         - symbolic link to LFW database directory
 %                                 (must also contain /mgt/ subdir) 
 % 
-% Directory structure is checked by script.
+% Directory structure is checked by the script.
 % 
 % First step is pruning of original image database to get rid of incomplete
 % or corrupted data. Incomplete are images with incomplete XML annotation
@@ -100,7 +100,7 @@ fprintf(1,'Started on %s\n\n', datestr(now));
         ~exist(['./flandmark_data/libocas/mex/argmax_mex.' mexext], 'file') || ...
         ~exist(['./flandmark_data/libocas/mex/getNormalizedFrame.' mexext], 'file') || ...
         ~exist(['./flandmark_data/libocas/mex/flandmark_detector.' mexext], 'file'))
-        error('Mex-files not found! Please compile the flandmark with BUILD_MATLAB_BINDINGS turned on.\n');
+        error('??? Mex-files not found! Please compile the flandmark with BUILD_MATLAB_BINDINGS turned on.\n');
     end
     
     fprintf('Done.\n');
@@ -163,7 +163,7 @@ fprintf(1,'Started on %s\n\n', datestr(now));
     % prepare lamdas
     fprintf('Looking for file with lambda values...\n');
     if (~exist('./flandmark_data/MAT/lambdas.mat', 'file'))
-        lambdas = [1e-2, 1e-1, 1];
+        lambdas = [1e-3, 1e-2, 1e-1, 1];
         fprintf('Not found. Creating...\n');
         save('./flandmark_data/MAT/lambdas.mat', 'lambdas');
         disp(lambdas);
