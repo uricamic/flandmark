@@ -8,7 +8,8 @@ clearvars; close all;
 
 %% Add path
 
-addpath('./Functions/');
+addpath('./learning/flandmark_data/Functions/');
+addpath('./learning/flandmark_data/libocas/mex/');
 
 DIR = './data/Images/';
 IMGS = dir([DIR '*.jpg']);
@@ -32,7 +33,7 @@ plotbox(bbox);
 
 for i = 1 : size(bbox, 1)
     tic
-    P = flandmark_detector(rgb2gray(I), int32(bbox(i, :)),  './flandmark_model.dat');
+    P = flandmark_detector(rgb2gray(I), int32(bbox(i, :)),  './data/flandmark_model.dat');
     t1 = toc;
     fprintf('MEX:    Elapsed time %f ms\n', t1*1000);
 
