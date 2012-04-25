@@ -24,7 +24,7 @@ if(MEX_CMD AND MEXEXT_CMD)
     get_filename_component(MEXEXT_PATH ${MEXEXT_REAL_CMD} PATH)
 
     message(STATUS "Found MATLAB at: " ${MEX_PATH})
-    message(STATUS "OpenCV_INSTALL_PATH =" ${OpenCV_INSTALL_PATH}) 
+    message(STATUS "OpenCV_INSTALL_PATH =" ${OpenCV_INSTALL_PATH})
 
     if(MEX_PATH STREQUAL MEXEXT_PATH)
 
@@ -88,24 +88,85 @@ if(MEX_CMD AND MEXEXT_CMD)
         add_custom_target(${MEX_NAME_flandmark_load_model} ALL DEPENDS ${MEX_FILE_flandmark_load_model})
         add_custom_target(${MEX_NAME_lbp2sparse} ALL DEPENDS ${MEX_FILE_lbp2sparse})
         add_custom_target(${MEX_NAME_argmax} ALL DEPENDS ${MEX_FILE_argmax})
-        add_custom_target(${MEX_NAME_getNF} ALL DEPENDS ${MEX_FILE_getNF})	
+        add_custom_target(${MEX_NAME_getNF} ALL DEPENDS ${MEX_FILE_getNF})
 
-	macro(copy_files GLOBPAT DESTINATION)
-	file(GLOB COPY_FILES RELATIVE ${CMAKE_CURRENT_BINARY_DIR} ${GLOBPAT})
-	add_custom_target(
-	    copy ALL 
-	    COMMENT "Copying files: ${GLOBPAT}")
-	foreach(FILENAME ${COPY_FILES})
-	  set(SRC "${CMAKE_CURRENT_BINARY_DIR}/${FILENAME}")
-	  set(DST "${DESTINATION}/${FILENAME}")
-	  add_custom_command(
-	    TARGET copy
-	    COMMAND ${CMAKE_COMMAND} -E copy ${SRC} ${DST}
-	    )
-	endforeach(FILENAME)
-      endmacro(copy_files)
+#		macro(copy_files GLOBPAT DESTINATION)
+##file(GLOB COPY_FILES RELATIVE ${CMAKE_CURRENT_BINARY_DIR} ${GLOBPAT})
+#			file(GLOB COPY_FILES RELATIVE ${CMAKE_BINARY_DIR}/cpp/mex ${GLOBPAT})
+#			add_custom_target(
+#	    		copy ALL
+#	    		COMMENT "Copying files: ${GLOBPAT}: ${COPY_FILES}"
+#			)
+#			foreach(FILENAME ${COPY_FILES})
+##set(SRC "${CMAKE_CURRENT_BINARY_DIR}/${FILENAME}")
+#				set(SRC "${CMAKE_BINARY_DIR}/cpp/mex/${FILENAME}")
+#	  			set(DST "${DESTINATION}/${FILENAME}")
+#	  			add_custom_command(
+#	    			TARGET copy
+#	    			COMMAND ${CMAKE_COMMAND} -E copy ${SRC} ${DST}
+#					COMMENT "Copying file ${SRC} to ${DST}."
+#	    		)
+#			endforeach(FILENAME)
+#   	endmacro(copy_files)
+#		copy_files("${CMAKE_BINARY_DIR}/cpp/mex/*.${MEX_EXTENSION}" "${PROJECT_SOURCE_DIR}/learning/flandmark_data/libocas/mex")
 
-      copy_files("${CMAKE_CURRENT_BINARY_DIR}/*.${MEX_EXTENSION}" "${PROJECT_SOURCE_DIR}/learning/flandmark_data/libocas/mex")
+
+#	macro(copy_files GLOBPAT DESTINATION)
+#		file(GLOB COPY_FILES RELATIVE ${CMAKE_CURRENT_BINARY_DIR} ${GLOBPAT})
+#		add_custom_target(
+#			copy ALL
+#			COMMENT "Copying files: ${GLOBPAT}"
+#			COMMENT "COPY_FILES: ${COPY_FILES}")
+#		foreach(FILENAME ${COPY_FILES})
+#			set(SRC "${CMAKE_CURRENT_BINARY_DIR}/${FILENAME}")
+#			set(DST "${DESTINATION}/${FILENAME}")
+#			add_custom_command(
+#				TARGET copy
+#				COMMAND ${CMAKE_COMMAND} -E copy ${SRC} ${DST}
+#				)
+#		endforeach(FILENAME)
+#	endmacro(copy_files)
+
+#	copy_files("${CMAKE_CURRENT_BINARY_DIR}/*.${MEX_EXTENSION}" "${PROJECT_SOURCE_DIR}/learning/flandmark_data/libocas/mex")
+
+
+	# copy mex-files
+	add_custom_command(
+			TARGET ${MEX_NAME_getNF}
+			POST_BUILD
+			COMMAND ${CMAKE_COMMAND} -E copy ${MEX_FILE_getNF} ${PROJECT_SOURCE_DIR}/learning/flandmark_data/libocas/mex
+			COMMENT "Copying ${MEX_FILE_getNF}"
+	)
+	add_custom_command(
+			TARGET ${MEX_NAME_argmax}
+			POST_BUILD
+			COMMAND ${CMAKE_COMMAND} -E copy ${MEX_FILE_argmax} ${PROJECT_SOURCE_DIR}/learning/flandmark_data/libocas/mex
+			COMMENT "Copying ${MEX_FILE_argmax}"
+	)
+	add_custom_command(
+			TARGET ${MEX_NAME_lbp2sparse}
+			POST_BUILD
+			COMMAND ${CMAKE_COMMAND} -E copy ${MEX_FILE_lbp2sparse} ${PROJECT_SOURCE_DIR}/learning/flandmark_data/libocas/mex
+			COMMENT "Copying ${MEX_FILE_lbp2sparse}"
+	)
+	add_custom_command(
+			TARGET ${MEX_NAME_flandmark_detector}
+			POST_BUILD
+			COMMAND ${CMAKE_COMMAND} -E copy ${MEX_FILE_flandmark_detector} ${PROJECT_SOURCE_DIR}/learning/flandmark_data/libocas/mex
+			COMMENT "Copying ${MEX_FILE_flandmark_detector}"
+	)
+	add_custom_command(
+			TARGET ${MEX_NAME_flandmark_detector_base}
+			POST_BUILD
+			COMMAND ${CMAKE_COMMAND} -E copy ${MEX_FILE_flandmark_detector_base} ${PROJECT_SOURCE_DIR}/learning/flandmark_data/libocas/mex
+			COMMENT "Copying ${MEX_FILE_flandmark_detector_base}"
+	)
+	add_custom_command(
+			TARGET ${MEX_NAME_flandmark_load_model}
+			POST_BUILD
+			COMMAND ${CMAKE_COMMAND} -E copy ${MEX_FILE_flandmark_load_model} ${PROJECT_SOURCE_DIR}/learning/flandmark_data/libocas/mex
+			COMMENT "Copying ${MEX_FILE_flandmark_load_model}"
+	)
 
     else()
         message(WARNING "The 'mex' and 'mexext' programs have been found in different locations. It's likely that one of them is not part of the MATLAB instalation. Make sure that the 'bin' directory from the MATLAB instalation is in PATH")
