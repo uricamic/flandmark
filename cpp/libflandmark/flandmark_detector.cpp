@@ -566,7 +566,7 @@ EError_T flandmark_checkModel(FLANDMARK_Model* model, FLANDMARK_Model* tst)
             return ERROR_DATA_OPTIONS_PSIG;
         }
     }
-    return NO_ERROR;
+    return NO_ERR;
 }
 
 void flandmark_free(FLANDMARK_Model* model)
