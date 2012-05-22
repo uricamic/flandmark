@@ -62,7 +62,7 @@ typedef struct psi_sparse {
 // -------------------------------------------------------------------------
 
 enum EError_T {
-    NO_ERROR=0,
+    NO_ERR=0,
     ERROR_M=1,
     ERROR_BW=2,
     ERROR_BW_MARGIN=3,
