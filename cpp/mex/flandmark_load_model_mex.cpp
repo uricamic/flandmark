@@ -278,7 +278,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     retval = flandmark_checkModel(model, tst);
     switch (retval)
     {
-        case NO_ERROR:
+        case NO_ERR:
             mexPrintf("all done.\n");
         break;
         case ERROR_M:
