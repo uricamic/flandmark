@@ -49,7 +49,7 @@ if(MEX_CMD AND MEXEXT_CMD)
 	            COMMAND ${MEX_REAL_CMD}
 	            ARGS -largeArrayDims
 	            ${CMAKE_CURRENT_SOURCE_DIR}/flandmark_detector_mex.cpp
-	            -I${PROJECT_SOURCE_DIR}/cpp/libflandmark -I${OpenCV_INCLUDE} -L${PROJECT_BINARY_DIR}/cpp/libflandmark -lflandmark_static -lcxcore -lcvaux -o ${MEX_NAME_flandmark_detector}
+	            -I${PROJECT_SOURCE_DIR}/cpp/libflandmark -I${OpenCV_INCLUDE} -L${PROJECT_BINARY_DIR}/cpp/libflandmark -lflandmark_static -lcxcore -lcv -lcvaux -o ${MEX_NAME_flandmark_detector}
 	            DEPENDS flandmark_static ${CMAKE_CURRENT_SOURCE_DIR}/${MEX_NAME_flandmark_detector}_mex.cpp
 	            COMMENT "Building MEX extension ${MEX_FILE_flandmark_detector}"
 	        )
@@ -59,7 +59,7 @@ if(MEX_CMD AND MEXEXT_CMD)
 	            COMMAND ${MEX_REAL_CMD}
 	            ARGS -largeArrayDims
 	            ${CMAKE_CURRENT_SOURCE_DIR}/flandmark_detector_base_mex.cpp
-	            -I${PROJECT_SOURCE_DIR}/cpp/libflandmark -I${OpenCV_INCLUDE} -L${PROJECT_BINARY_DIR}/cpp/libflandmark -lflandmark_static -lcxcore -lcvaux -o ${MEX_NAME_flandmark_detector_base}
+	            -I${PROJECT_SOURCE_DIR}/cpp/libflandmark -I${OpenCV_INCLUDE} -L${PROJECT_BINARY_DIR}/cpp/libflandmark -lflandmark_static -lcxcore -lcv -lcvaux -o ${MEX_NAME_flandmark_detector_base}
 	            DEPENDS flandmark_static ${CMAKE_CURRENT_SOURCE_DIR}/${MEX_NAME_flandmark_detector_base}_mex.cpp
 	            COMMENT "Building MEX extension ${MEX_FILE_flandmark_detector_base}"
 	        )
@@ -69,7 +69,7 @@ if(MEX_CMD AND MEXEXT_CMD)
 	            COMMAND ${MEX_REAL_CMD}
 	            ARGS -largeArrayDims
 	            ${CMAKE_CURRENT_SOURCE_DIR}/flandmark_load_model_mex.cpp
-	            -I${PROJECT_SOURCE_DIR}/cpp/libflandmark/ -I${OpenCV_INCLUDE} -L${PROJECT_BINARY_DIR}/cpp/libflandmark -lflandmark_static -lcxcore -lcvaux -o ${MEX_NAME_flandmark_load_model}
+	            -I${PROJECT_SOURCE_DIR}/cpp/libflandmark/ -I${OpenCV_INCLUDE} -L${PROJECT_BINARY_DIR}/cpp/libflandmark -lflandmark_static -lcxcore -lcv -lcvaux -o ${MEX_NAME_flandmark_load_model}
 	            DEPENDS flandmark_static ${CMAKE_CURRENT_SOURCE_DIR}/${MEX_NAME_flandmark_load_model}_mex.cpp
 	            COMMENT "Building MEX extension ${MEX_FILE_flandmark_load_model}"
 	        )
@@ -93,7 +93,7 @@ if(MEX_CMD AND MEXEXT_CMD)
 	            COMMAND ${MEX_REAL_CMD}
 	            ARGS -largeArrayDims
 	            ${CMAKE_CURRENT_SOURCE_DIR}/getNormalizedFrame_mex.cpp
-	            -I${PROJECT_SOURCE_DIR}/cpp/libflandmark/ -I${OpenCV_INCLUDE} -L${PROJECT_BINARY_DIR}/cpp/libflandmark -lflandmark_static -lcxcore -lcvaux -o ${MEX_NAME_getNF}
+	            -I${PROJECT_SOURCE_DIR}/cpp/libflandmark/ -I${OpenCV_INCLUDE} -L${PROJECT_BINARY_DIR}/cpp/libflandmark -lflandmark_static -lcxcore -lcv -lcvaux -o ${MEX_NAME_getNF}
 	            DEPENDS flandmark_static ${CMAKE_CURRENT_SOURCE_DIR}/${MEX_NAME_getNF}_mex.cpp
 	            COMMENT "Building MEX extension ${MEX_FILE_getNF}"
 	        )
