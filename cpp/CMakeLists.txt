@@ -19,11 +19,12 @@ if(${OpenCV_VERSION_MINOR} LESS 3)
 
     set(${PROJECT_NAME}_example1_srcs example1.cpp)
     add_executable(${PROJECT_NAME}_1 ${${PROJECT_NAME}_example1_srcs})
-    target_link_libraries(${PROJECT_NAME}_1 flandmark_static highgui  cxcore cvaux)
+    target_link_libraries(${PROJECT_NAME}_1 flandmark_static highgui  cxcore cv cvaux)
 
     set(${PROJECT_NAME}_example2_srcs example2.cpp)
     add_executable(${PROJECT_NAME}_2 ${${PROJECT_NAME}_example2_srcs})
-    target_link_libraries(${PROJECT_NAME}_2 flandmark_static highgui cxcore cvaux)
+    target_link_libraries(${PROJECT_NAME}_2 flandmark_static highgui cxcore cv cvaux)
+
 else(${OpenCV_VERSION_MINOR} LESS 3)
     set(${PROJECT_NAME}_simple_example_srcs simple_example.cpp)
     add_executable(${PROJECT_NAME}_simple_example ${${PROJECT_NAME}_simple_example_srcs})
