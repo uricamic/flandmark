@@ -1,0 +1,34 @@
+Explanation of directory content
+================================
+
+README		- this file
+CMakeLists.txt	- to create release archives
+libflandmark	- flandmark source code
+examples	- demonstrational cpp applications
+matlab_toolbox	- MATLAB examples and mex sources
+learning	- MATLAB learning scripts for flandmark learning
+data		- important data files for running examples
+benchmarks	- face database divisions used for benchmarks
+
+In case you use flandmark in an academic work, please cite the following paper:
+
+@InProceedings{Uricar-Franc-Hlavac-VISAPP-2012,
+  author =      {U{\v{r}}i{\v{c}}{\'{a}}{\v{r}}, Michal and Franc, Vojt{\v{e}}ch and Hlav{\'{a}}{\v{c}}, V{\'{a}}clav },
+  title =       {Detector of Facial Landmarks Learned by the Structured Output {SVM}},
+  year =        {2012},
+  pages =       {547-556},
+  booktitle =   {VISAPP '12: Proceedings of the 7th International Conference on Computer Vision Theory and Applications},
+  editor =      {Csurka, Gabriela and Braz, Jos{\'{e}}},
+  publisher =   {SciTePress --- Science and Technology Publications},
+  address =     {Portugal},
+  volume =      {1},
+  isbn =        {978-989-8565-03-7},
+  book_pages =  {747},
+  month =       {February},
+  day =         {24-26},
+  venue =       {Rome, Italy},
+  keywords =    {Facial Landmark Detection, Structured Output Classification, Support Vector Machines, Deformable Part Models},
+  www =         {http://www.visapp.visigrapp.org},
+}
+
+Visit http://cmp.felk.cvut.cz/~uricamic/flandmark for further information

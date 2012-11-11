@@ -1,0 +1,9 @@
+2009-11-26  Vojtech Franc
+	* Bogdan Savchinskii reported problem with compiling the mex interface under Matlab 7. 
+	To fix the problme one needs to use mex with option "-largeArrayDims". The libqp_compile.m 
+	was change accordingly. 
+2009-11-20  Vojtech Franc
+	* Added support for sparse matrices to libqp_splx.m, i.e. the input Hessian can be now both 
+	spare or dense matrix.
+2009-07-31  Vojtech Franc
+	* Fixed memory leak problem (missing "LIBQP_FREE( x_neq )") in libqp_splx.c (reported by Alex Binder)

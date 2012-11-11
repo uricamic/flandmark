@@ -1,0 +1,157 @@
+\documentclass{amsart}
+\usepackage{hyperref,amsmath,amsfonts}
+
+\begin{document}
+\title{Library for Quadratic Programming}
+\author{Vojt\v{e}ch Franc\\ xfrancv at cmp.felk.cvut.cz} 
+\maketitle
+%\tableofcontents
+
+\def\x{\mathbf x}
+\def\f{\mathbf f}
+\def\a{\mathbf a}
+\def\H{\mathbf H}
+\def\Sequ{\rm S_{\rm equ}}
+\def\Sneq{\rm S_{\rm neq}}
+\renewcommand{\Re}{\mathbb{R}}
+
+\section*{Introduction}
+
+LIBQP is C library which implements algorithms for solving two special instances of
+convex Quadratic Programming (QP):
+
+%\begin{enumerate}
+ % \item 
+
+\large
+\subsection*{QP task with simplex constraints} This QP task is defined as follows
+\[
+   \begin{array}{lrcll}
+     \mbox{minimize} &\multicolumn{4}{l}{\displaystyle\frac{1}{2}\x^T \H \x +
+       \x^T \f} \\ \\
+     \mbox{subject to} 
+     & \displaystyle\sum_{i\in I_k} x_i & = & b_k\:, & k\in \Sequ \\ 
+     & \displaystyle\sum_{i\in I_k} x_i & \leq & b_k\:, & k\in \Sneq \\
+     & x_i & \geq & 0\:, & i\in I \:.
+   \end{array}
+\]
+where \(\x = (x_1,\ldots,x_n)\in\Re^n\) is the optimized vector, \(\H
+\in\Re^{n\times n}\) is a symmetric positive semi-definite matrix,
+\(\f\in\Re^n\) is a vector, \(I =
+\{1,\ldots,n\}\) is an index set, \(\{I_1,\ldots,I_m\}\) are subsets of \(I\)
+such that  \(I_1\cup \ldots \cup I_k = I\) and \(I_1 \cap \ldots \cap I_k =
+\emptyset\), \(\Sequ\) and \(\Sneq\) are index sets such that  
+\(\Sequ \cup \Sneq = \{1,\ldots,m\}\) and \(\Sequ \cap \Sneq = \emptyset\),
+\((b_1,\ldots,b_m)\in\Re^m\) are positive numbers.
+
+
+The implemented solver (\verb|libqp_splx.c|) is a generalization of the method
+proposed in~\cite{Franc-TR-2006-04,Fan-JMLR05}. It is based on the Sequential Minimal
+Optimization (SMO) algorithm with an improved working set selection
+strategy. Solving instances of this QP task is required, for example, in machine 
+learning methods like Structured SVM learning, Bundle Methods for Risk
+Minimization, binary SVM with L2-soft margin, etc. 
+
+\subsection*{QP task with box constraints and a single linear equality constraint}
+This QP task is defined as follows
+\[
+  \begin{array}{lrcl}
+    \mbox{minimize} &\multicolumn{3}{l}{\displaystyle\frac{1}{2}\x^T \H \x +
+      \x^T \f} \\ \\
+    \mbox{subject to} 
+    & \displaystyle\x^T \a & = & b\:, \\ 
+    & \multicolumn{3}{c}{\displaystyle l_i \leq x_i \leq u_i\:, \qquad i=1,\ldots,n}\:,
+  \end{array}
+\]
+where \(\x = (x_1,\ldots,x_n)\in\Re^n\) is the optimized vector, \(\H
+\in\Re^{n\times n}\) is a symmetric positive semi-definite matrix,
+\(\f\in\Re^n\) is a vector, $\a\in\Re^n$ is a vector with non-zero entries,
+$b\in\Re$ is a scalar, $(l_1,\ldots,l_n)\in(\Re \cup \{-\infty\})^n$ and
+$(u_1,\ldots,u_n)\in(\Re\cup\{\infty\})^n$ are lower and upper bounds,
+respectively. 
+
+The solver (\verb|libqp_gsmo.c|) is the exact implementation of the 
+Generalized Sequential Minimal Optimizer proposed in~\cite{Keerthi-00}.
+Solving this QP task is required, for example, when training binary 
+SVM with L1-soft margin. 
+
+\section*{Interfaces}
+
+LIBQP is implemented in C language and interfaces to Matlab.
+
+\section*{Platforms}
+
+GNU/Linux. It should run also under Windows though not tested.
+
+\section*{Installation}
+
+LIBQP can be downloaded from \url{http://cmp.felk.cvut.cz/~xfrancv/libqp/libqp.zip}.
+
+\subsection*{MATLAB}
+
+\begin{enumerate}
+  \item Run Matlab and go to the folder \verb|libqp_root/matlab|
+    \begin{verbatim}
+      cd libqp_root/matlab
+    \end{verbatim}
+  \item Compile mex files by running
+    \begin{verbatim}
+      libqp_compile
+    \end{verbatim}
+\end{enumerate}
+Now you can use \verb|libqp_splx| and \verb|libqp_gsmo| solvers located in
+\verb|libqp_root/matlab|. To make these function visible from Matlab you 
+need to add 
+\begin{verbatim}
+    addpath('libqp_root/matlab')
+\end{verbatim}
+to your \verb|startup.m| file. 
+
+\noindent
+To test the solvers run scripts
+\begin{verbatim}
+  libqp_splx_test
+  libqp_gsmo_test
+\end{verbatim}
+
+
+\subsection*{Example application}
+
+\begin{enumerate}
+  \item Go to the folder \verb|libqp_root/examples|
+    \begin{verbatim}      
+      cd libqp_root/examples
+    \end{verbatim}
+  \item Issue make 
+    \begin{verbatim}      
+      make
+    \end{verbatim}
+\end{enumerate}
+Now you can run test script
+\begin{verbatim}      
+    ./run_test
+\end{verbatim}
+
+
+\section*{License}
+
+LIBQP is licensed under the GPL version 3 (\url{http://gplv3.fsf.org/}).
+
+
+\begin{thebibliography}{00}
+\bibitem[1]{Franc-TR-2006-04}
+V. Franc, V. Hlavac. A Novel Algorithm for Learning Support Vector Machines
+with Structured Output Spaces. Research Report K333 22/06, CTU-CMP-2006-04. 
+May, 2006. 
+\url{ftp://cmp.felk.cvut.cz/pub/cmp/articles/franc/Franc-TR-2006-04.ps}
+\bibitem[2]{Fan-JMLR05}
+R.-E. Fan, P.-H. Chen, C.-J. Lin. Working Set Selection Using Second Order 
+Information for Training SVM. JMLR. vol 6. 2005.
+\url{TBA}
+\bibitem[3]{Keerthi-00}
+S.-S. Keerthi, E.G.Gilbert. Convergence of a Generalized SMO Algorithm for SVM 
+Classifier Design. Technical Report CD-00-01, Control Division, Dept. of Mechanical 
+and Production Engineering, National University of Singapore, 2000. 
+\url{http://citeseer.ist.psu.edu/keerthi00convergence.html}
+\end{thebibliography}
+\end{document}

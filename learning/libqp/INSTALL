@@ -1,0 +1,37 @@
+MATLAB
+
+1. Run Matlab and go to the folder libqp_root/matlab
+
+  cd libqp_root/matlab
+
+2. Compile mex files by running
+
+  libqp_compile
+
+Now you can use libqp_splx and libqp_gsmo solvers located in
+libqp_root/matlab. To make these function visible from Matlab you 
+need to add 
+
+    addpath('libqp_root/matlab')
+
+to your startup.m file. 
+
+To test the solvers run scripts
+  libqp_splx_test
+  libqp_gsmo_test
+
+
+EXAMPLE APPLICATION
+
+1. Go to the folder libqp_root/examples
+
+    cd libqp_root/examples
+
+2. Issue make 
+
+    make
+
+Now you can run test script
+
+    ./run_test
+

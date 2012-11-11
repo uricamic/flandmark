@@ -1,0 +1,7 @@
+# LFW Annotation File format
+#
+# Format:
+# 1. name.jpg   2. detected face bbox [4 x 1 int] 3. Landmarks annotation in the following order: canthus_rr [2 x 1 float] canthus_rl [2 x 1 float] canthus_lr [2 x 1 float] canthus_ll [2 x 1 float]  mouth_corner_r [2 x 1 float] mouth_corner_l [2 x 1 float] nose [2 x 1 float]
+# 
+# Example:
+# AJ_Cook_0001.jpg	75   75  177  177	94.9767      117.9683      113.2114      116.3827      135.9387      112.9471      159.4588      109.7759      110.5687      159.9873      147.8309      154.9662      118.7611      138.3171

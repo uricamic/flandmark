@@ -1,0 +1,84 @@
+INSTALLATION
+============
+
+We now support only project configuration with CMake (www.cmake.org)
+
+Linux:
+-------------------------------------------------------------------------------------
+
+Create dir where you want the binaries to be build (we refer to path to this dir as $BIN and to the path to directory
+with source codes as $SRC). Change working directory to $BIN and run (you will need to have cmake-curses-gui installed)
+CMake as follows:
+
+	ccmake $SRC
+
+We recommend to create directory bin/ inside the source directory. Then simply go to the bin/ directory and type 
+
+	ccmake ..
+	
+Now configure project with CMake. Turn on the BUILD_MATLAB_BINDINGS if you want the mex-files to be produced
+(for this it is important to have path to MEX and MEX_EXT specified correctly).
+
+After the configuration compile the source codes with
+
+	make
+
+This will compile the flandmark library and create both static and shared library in the $BIN/libflandmark directory.
+If you haven't switched off the BUILD_CPP_EXAMPLES option, it will also produce 3 executable examples 
+in the $BIN/examples directory:
+
+	flandmark_simple_example-	simplest example using flandmark. Given an image and bbox as command line arguments
+					it calls flandmark to detect facial landmarks.
+					Usage (in $BIN/examples directory):  ./flandmark_simple_example face.jpg 72 72 183 183
+
+	flandmark_1		- 	this example requires image as parameter. Then it performs OpenCV face detection and
+					the facial landmark detection. Only the biggest face in image is detected. Optionaly
+					user can specify also second argument - the name of output image, if this argument is
+					specified, image with detected landmarks is produced.
+					Usage (in $BIN/examples directory): ./flandmark_1 groupphoto.jpg
+
+	flandmark_2		-	this example requires webcamera or video sequence. It starts capturing frames from camera 
+					and performs OpenCV face detection together with the flandmark detector. It is also 
+					possible to save the generated output both for webcamera and video sequence input.
+					Usage (in $BIN/examples directory): 
+					  ./flandmark_2 seq_bruges04_300frames.avi	// to use with video input
+					  ./flandmark_2 0 output.avi			// to use with webcam input and writing output to output.avi
+
+If CMake is configured with BUILD_MATLAB_BINDINGS=ON it also produces following mex-files:
+
+	flandmark_write_model	- 	produces binary .dat file with flandmark model data structure
+	flandmark_load_model	- 	loads .dat file with flandmark model data structure into matlab memory
+	flandmark_detector	- 	performs facial landmark detection given an image and detected face bbox
+	flandmark_detector_base	- 	performs the facial landmark detection given normalized image frame
+	getNormalizedFrame	- 	given an image and detected face bbox will create the normalized image frame
+	lbp2sparse		- 	computes sparse LBP features
+	argmax_mex		-	fast computation of dynamic programming of flandmark task
+
+
+Windows:
+-------------------------------------------------------------------------------------
+
+Run cmake-gui, specify the source codes and binary directories. Configure project. In the binary directory
+you can find generated project files. Compile the project with IDE chosen during CMake project configuration.
+
+
+MATLAB
+=======
+
+To try the flandmark library with MATLAB, please first compile the library and mex-files (you can do this either during library 
+compilation or later by running ./matlab_toolbox/flandmark_compilemex.m script from MATLAB).
+
+In the ./matlab_toolbox directory you can find example file, which shows how to use flandmark:
+
+	flandmark_simple_example.m	-	Simple MATLAB script that runs flandmark detector and shows its output.
+
+LEARNING (with MATLAB)
+=======================
+	
+For learning the parameters of detector just run the following script:
+
+	./learning/flandmark_learn.m	- 	This is the main script that calls all necessary scripts to produce
+						flandmark_model.dat (the binary file containing the generated flandmark model, which
+						is used by the flandmark library)
+
+
