@@ -11,7 +11,7 @@
 #ifndef _liblbp_h
 #define _liblbp_h
 
-#include <stdint.h>
+#include "msvc-compat.h"
 
 #define LIBLBP_INDEX(ROW,COL,NUM_ROWS) ((COL)*(NUM_ROWS)+(ROW))
 #define LIBLBP_MIN(A,B) ((A) > (B) ? (B) : (A))
