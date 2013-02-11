@@ -11,7 +11,7 @@
 #ifndef __FLANDMARK_DETECTOR_H_
 #define __FLANDMARK_DETECTOR_H_
 
-#include <stdint.h>
+#include "msvc-compat.h"
 #include <cv.h>
 #include <cvaux.h>
 
