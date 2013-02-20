@@ -9,7 +9,7 @@
  */
 
 #include <mex.h>
-#include <stdint.h>
+#include "msvc-compat.h"
 
 #include "flandmark_detector.h"
 
