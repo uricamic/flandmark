@@ -1,0 +1,68 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+PROJECT(external)
+
+FIND_PACKAGE( OpenCV REQUIRED )
+FIND_PACKAGE( flandmark REQUIRED )
+
+# Define flags for specific OS building
+IF(UNIX)
+  ADD_DEFINITIONS(-DUNIX)
+  IF(APPLE)
+    ADD_DEFINITIONS(-DAPPLE)
+    MESSAGE("Building on APPLE")
+  ELSE(APPLE)
+    SET(LINUX 1)
+    ADD_DEFINITIONS(-DLINUX)
+    MESSAGE("Building on LINUX")
+  ENDIF(APPLE)
+ENDIF(UNIX)
+
+IF(WIN32)
+  ADD_DEFINITIONS(-DWIN32)
+  MESSAGE("Building on WIN32")
+ENDIF(WIN32)
+
+IF(UNIX)
+  #add definitions, compiler switches, etc.
+  ADD_DEFINITIONS(-Wall -Wno-deprecated)
+  #SET(CMAKE_CXX_FLAGS_DEBUG "-g")
+  SET(CMAKE_SKIP_RPATH ON)
+
+  IF(CMAKE_COMPILER_IS_GNUCC)
+    SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fmessage-length=0")
+  ENDIF(CMAKE_COMPILER_IS_GNUCC)
+  IF(CMAKE_COMPILER_IS_GNUCXX)
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fmessage-length=0")
+  ENDIF(CMAKE_COMPILER_IS_GNUCXX)
+ENDIF(UNIX)
+
+# If you don't want the full compiler output, remove the following line
+SET(CMAKE_VERBOSE_MAKEFILE ON)
+SET(CMAKE_BUILD_TYPE "Debug")
+SET(CMAKE_CXX_FLAGS "-D_ENGLISH")
+
+######## INCLUDE AND LINK DIRECTORIES ########
+
+INCLUDE_DIRECTORIES(
+	/usr/local/include
+  ${CMAKE_CURRENT_BINARY_DIR}
+  ${CMAKE_CURRENT_SOURCE_DIR}
+  ${OPENCV_INCLUDE_DIR}
+  ${FLANDMARK_INCLUDE_DIRS}
+)
+
+LINK_DIRECTORIES(
+	${FLANDMARK_LINK_DIRS}
+	${OpenCV_LIB_DIR}
+)
+
+
+######## MAIN EXECUTABLES ########
+
+set(EXAMPLES example1)
+foreach(var ${EXAMPLES})
+add_executable(${var} ${var}.cpp)
+TARGET_LINK_LIBRARIES(${var} ${AMT_LIBS} ${FLANDMARK_LIBRARIES} ${OpenCV_LIBS})
+endforeach()
+
+
