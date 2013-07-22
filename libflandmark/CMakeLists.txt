@@ -1,5 +1,5 @@
 find_package( OpenCV REQUIRED )
-include_directories(${OPENCV_INCLUDE_DIR})
+include_directories(${OpenCV_INCLUDE_DIRS})
 
 if(${OpenCV_VERSION_MINOR} LESS 3)
 	if (UNIX)
