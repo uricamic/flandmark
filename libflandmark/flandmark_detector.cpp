@@ -1096,7 +1096,7 @@ int flandmark_get_normalized_image_frame(IplImage *input, const int bbox[], doub
 	{
 		for (int y = 0; y < model->data.options.bw[1]; ++y)
 		{
-            face_img[INDEX(x, y, model->data.options.bw[1])] = (uint8_t)((resizedImage->imageData + resizedImage->widthStep*x)[y]);
+            face_img[INDEX(y, x, model->data.options.bw[1])] = (uint8_t)((resizedImage->imageData + resizedImage->widthStep*y)[x]);
 		}
 	}
 
