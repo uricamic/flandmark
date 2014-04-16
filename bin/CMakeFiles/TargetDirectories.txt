@@ -1,5 +1,0 @@
-/Users/dexter/git/flandmark/bin/examples/CMakeFiles/flandmark_1.dir
-/Users/dexter/git/flandmark/bin/examples/CMakeFiles/flandmark_2.dir
-/Users/dexter/git/flandmark/bin/libflandmark/CMakeFiles/flandmark_shared.dir
-/Users/dexter/git/flandmark/bin/examples/CMakeFiles/flandmark_simple_example.dir
-/Users/dexter/git/flandmark/bin/libflandmark/CMakeFiles/flandmark_static.dir
