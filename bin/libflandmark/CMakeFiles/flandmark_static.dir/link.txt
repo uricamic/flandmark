@@ -1,0 +1,2 @@
+/usr/bin/ar cr libflandmark_static.a  CMakeFiles/flandmark_static.dir/flandmark_detector.cpp.o CMakeFiles/flandmark_static.dir/liblbp.cpp.o
+/usr/bin/ranlib libflandmark_static.a

@@ -9,10 +9,10 @@ clearvars; close all;
 
 % Change this to your version of opencv
 OpenCVmajor = 2;
-OpenCVminor = 3;
+OpenCVminor = 4;
 
 % Setup paths accpording to system platform
-if (isunix)
+if (isunix&&~ismac)
     fprintf('Compiling mex-files on Unix platform...\n');
     
     include = ' -I/usr/include/opencv/ -I/usr/include/ ';
@@ -90,8 +90,12 @@ end;
 if (ismac)
     fprintf('Compiling mex-files on Mac platform...\n');
     
-    include = ' -I/opt/local/include/opencv/ -I/opt/local/include/'; 
-    libpath = '/opt/local/lib/'; 
+    include = ' -I/opt/local/include/opencv/ -I/opt/local/include/ -I/usr/local/include/opencv/ -I/usr/local/include/'; 
+    if(numel(dir('/usr/local/lib/libopencv*')))
+        libpath = '/usr/local/lib/';
+    else
+        libpath = '/opt/local/lib/';
+    end
     libflandmark = ' -L../bin/libflandmark/ -lflandmark_static ';
     
     % files = dir([libpath 'libopencv*.dylib']);  
