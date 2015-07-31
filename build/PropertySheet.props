@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <ExecutablePath>E:\opencv\build\x64\vc12\bin;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>E:\opencv\build\include\opencv2;E:\opencv\build\include\opencv;E:\opencv\build\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\opencv\build\x64\vc12\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup />
+  <ItemGroup />
+</Project>

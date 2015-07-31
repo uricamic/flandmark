@@ -14,7 +14,8 @@ DIR = '../data/Images/';
 IMGS = dir([DIR '*.jpg']);
 
 % Load flandmark_model into MATLAB memory
-model = flandmark_load_model('../data/flandmark_model.dat');
+load('../data/model.mat')
+% model = flandmark_load_model('../data/flandmark_model.dat');
 
 %% Run detector
 
