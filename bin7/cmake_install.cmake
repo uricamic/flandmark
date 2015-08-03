@@ -1,8 +1,8 @@
-# Install script for directory: E:/Users/daniyuu/Lab/flandmark/libflandmark
+# Install script for directory: E:/Users/daniyuu/Lab/flandmark
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/Project")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/flandmark")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -25,6 +25,14 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   else()
     set(CMAKE_INSTALL_COMPONENT)
   endif()
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for each subdirectory.
+  include("E:/Users/daniyuu/Lab/flandmark/bin7/libflandmark/cmake_install.cmake")
+  include("E:/Users/daniyuu/Lab/flandmark/bin7/examples/cmake_install.cmake")
+  include("E:/Users/daniyuu/Lab/flandmark/bin7/matlab_toolbox/mex/cmake_install.cmake")
+
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)

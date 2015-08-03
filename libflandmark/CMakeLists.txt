@@ -1,4 +1,4 @@
-SET( OpenCV "E:/Program Files/opencv")
+SET( OpenCV "E:/opencv")
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 add_library(flandmark_static STATIC flandmark_detector.cpp flandmark_detector.h liblbp.cpp liblbp.h)

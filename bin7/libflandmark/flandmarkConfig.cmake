@@ -1,4 +1,4 @@
-SET(FLANDMARK_BASE_DIR "E:/Users/daniyuu/Lab/flandmark/libflandmark/libflandmark")
+SET(FLANDMARK_BASE_DIR "E:/Users/daniyuu/Lab/flandmark/libflandmark")
 SET(FLANDMARK_BINARY_DIR "E:/Users/daniyuu/Lab/flandmark/bin7/libflandmark")
 
 SET(FLANDMARK_INCLUDE_DIRS ${FLANDMARK_BASE_DIR})

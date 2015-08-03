@@ -3,6 +3,7 @@
 include_directories("${PROJECT_SOURCE_DIR}/libflandmark")
 
 SET( OpenCV "E:/Program Files/opencv")
+SET( OPENCV_INCLUDE_DIR "E:/Program Files/opencv/build/include")
 include_directories(${OPENCV_INCLUDE_DIR})
 
 set(CV_LIBS_1 opencv_highgui2410)
