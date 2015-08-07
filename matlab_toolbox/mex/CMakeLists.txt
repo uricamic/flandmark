@@ -1,4 +1,6 @@
-find_package( OpenCV REQUIRED )
+cmake_minimum_required(VERSION 3.3)
+
+SET( OpenCV "E:/Program Files/opencv")
 include_directories(${OPENCV_INCLUDE_DIR})
 
 if(WIN32)
@@ -17,21 +19,8 @@ set(MEX_NAME_lbp2sparse lbp2sparse)
 set(MEX_NAME_argmax argmax_mex)
 set(MEX_NAME_getNF getNormalizedFrame)
 
-if(${OpenCV_VERSION_MINOR} LESS 3)
-	if (UNIX)
-		set(CV_LIBS_1 -lcxcore -lcv -lcvaux)
-	elseif (WIN32)
-		set(CV_LIBS_1 -lcxcore${OpenCV_VERSION_MAJOR}${OpenCV_VERSION_MINOR}${OpenCV_VERSION_PATCH} -lcv${OpenCV_VERSION_MAJOR}${OpenCV_VERSION_MINOR}${OpenCV_VERSION_PATCH} -lcvaux${OpenCV_VERSION_MAJOR}${OpenCV_VERSION_MINOR}${OpenCV_VERSION_PATCH})
-	elseif (APPLE)
-	endif (UNIX)
-else(${OpenCV_VERSION_MINOR} LESS 3)
-	if (UNIX)
-		set(CV_LIBS_1 -lopencv_core -lopencv_imgproc)
-	elseif (WIN32)
-		set(CV_LIBS_1 -lopencv_core${OpenCV_VERSION_MAJOR}${OpenCV_VERSION_MINOR}${OpenCV_VERSION_PATCH} -lopencv_imgproc${OpenCV_VERSION_MAJOR}${OpenCV_VERSION_MINOR}${OpenCV_VERSION_PATCH})
-	elseif (APPLE)
-	endif (UNIX)
-endif(${OpenCV_VERSION_MINOR} LESS 3)
+set(CV_LIBS_1 -lopencv_core2410 -lopencv_imgproc2410)
+	
 
 if(MEX_CMD AND MEXEXT_CMD)
 	get_filename_component(MEX_REAL_CMD ${MEX_CMD} ABSOLUTE)

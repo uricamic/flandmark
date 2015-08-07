@@ -1,0 +1,37 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "flandmark_shared", "flandmark_shared.vcxproj", "{EFF6AE27-2D1D-4081-951E-1F32C70D780B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "flandmark_static", "flandmark_static.vcxproj", "{FC85C390-4935-4EFF-BC16-79C8761967FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		MinSizeRel|Win32 = MinSizeRel|Win32
+		Release|Win32 = Release|Win32
+		RelWithDebInfo|Win32 = RelWithDebInfo|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EFF6AE27-2D1D-4081-951E-1F32C70D780B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EFF6AE27-2D1D-4081-951E-1F32C70D780B}.Debug|Win32.Build.0 = Debug|Win32
+		{EFF6AE27-2D1D-4081-951E-1F32C70D780B}.MinSizeRel|Win32.ActiveCfg = MinSizeRel|Win32
+		{EFF6AE27-2D1D-4081-951E-1F32C70D780B}.MinSizeRel|Win32.Build.0 = MinSizeRel|Win32
+		{EFF6AE27-2D1D-4081-951E-1F32C70D780B}.Release|Win32.ActiveCfg = Release|Win32
+		{EFF6AE27-2D1D-4081-951E-1F32C70D780B}.Release|Win32.Build.0 = Release|Win32
+		{EFF6AE27-2D1D-4081-951E-1F32C70D780B}.RelWithDebInfo|Win32.ActiveCfg = RelWithDebInfo|Win32
+		{EFF6AE27-2D1D-4081-951E-1F32C70D780B}.RelWithDebInfo|Win32.Build.0 = RelWithDebInfo|Win32
+		{FC85C390-4935-4EFF-BC16-79C8761967FA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FC85C390-4935-4EFF-BC16-79C8761967FA}.Debug|Win32.Build.0 = Debug|Win32
+		{FC85C390-4935-4EFF-BC16-79C8761967FA}.MinSizeRel|Win32.ActiveCfg = MinSizeRel|Win32
+		{FC85C390-4935-4EFF-BC16-79C8761967FA}.MinSizeRel|Win32.Build.0 = MinSizeRel|Win32
+		{FC85C390-4935-4EFF-BC16-79C8761967FA}.Release|Win32.ActiveCfg = Release|Win32
+		{FC85C390-4935-4EFF-BC16-79C8761967FA}.Release|Win32.Build.0 = Release|Win32
+		{FC85C390-4935-4EFF-BC16-79C8761967FA}.RelWithDebInfo|Win32.ActiveCfg = RelWithDebInfo|Win32
+		{FC85C390-4935-4EFF-BC16-79C8761967FA}.RelWithDebInfo|Win32.Build.0 = RelWithDebInfo|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
