@@ -15,7 +15,7 @@ OpenCVminor = 10;
     fprintf('Compiling mex-files on Windows platform...\n');
     include = [' -Ie:\opencv\build\include\opencv\' ' -Ie:\opencv\build\include\' ];
     libpath = 'e:\opencv\build\x64\vc10\lib\';
-    libflandmark = ' -L../flandmark/libflandmark_static/Release -lflandmark_static ';
+    libflandmark = ' -L..\flandmark\libflandmark_static\Release -lflandmark_static ';
     
     if (OpenCVminor < 3)
         cxcore = dir([libpath 'cxcore' num2str(OpenCVmajor) num2str(OpenCVminor) '*.lib']);
